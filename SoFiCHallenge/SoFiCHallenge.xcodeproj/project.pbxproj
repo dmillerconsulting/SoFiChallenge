@@ -14,6 +14,10 @@
 		9650398A229EFFBF00862228 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96503988229EFFBF00862228 /* LaunchScreen.storyboard */; };
 		96503995229EFFBF00862228 /* SoFiCHallengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96503994229EFFBF00862228 /* SoFiCHallengeTests.swift */; };
 		965039A0229F003500862228 /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9650399F229F003500862228 /* NetworkController.swift */; };
+		965039A4229F040700862228 /* ImgurImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965039A3229F040700862228 /* ImgurImage.swift */; };
+		965039AA229F2ECE00862228 /* ImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965039A9229F2ECE00862228 /* ImageController.swift */; };
+		965039AC229F305E00862228 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965039AB229F305E00862228 /* ImageCollectionViewCell.swift */; };
+		965039AE229F422000862228 /* ImageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965039AD229F422000862228 /* ImageDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +42,10 @@
 		96503994229EFFBF00862228 /* SoFiCHallengeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoFiCHallengeTests.swift; sourceTree = "<group>"; };
 		96503996229EFFBF00862228 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9650399F229F003500862228 /* NetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
+		965039A3229F040700862228 /* ImgurImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImgurImage.swift; sourceTree = "<group>"; };
+		965039A9229F2ECE00862228 /* ImageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageController.swift; sourceTree = "<group>"; };
+		965039AB229F305E00862228 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		965039AD229F422000862228 /* ImageDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,7 +89,11 @@
 			children = (
 				9650397F229EFFBE00862228 /* AppDelegate.swift */,
 				96503981229EFFBE00862228 /* ViewController.swift */,
+				965039A3229F040700862228 /* ImgurImage.swift */,
+				965039A9229F2ECE00862228 /* ImageController.swift */,
+				965039AB229F305E00862228 /* ImageCollectionViewCell.swift */,
 				9650399F229F003500862228 /* NetworkController.swift */,
+				965039AD229F422000862228 /* ImageDetailViewController.swift */,
 				96503983229EFFBE00862228 /* Main.storyboard */,
 				96503986229EFFBF00862228 /* Assets.xcassets */,
 				96503988229EFFBF00862228 /* LaunchScreen.storyboard */,
@@ -202,7 +214,11 @@
 			files = (
 				96503982229EFFBE00862228 /* ViewController.swift in Sources */,
 				96503980229EFFBE00862228 /* AppDelegate.swift in Sources */,
+				965039AE229F422000862228 /* ImageDetailViewController.swift in Sources */,
+				965039A4229F040700862228 /* ImgurImage.swift in Sources */,
 				965039A0229F003500862228 /* NetworkController.swift in Sources */,
+				965039AC229F305E00862228 /* ImageCollectionViewCell.swift in Sources */,
+				965039AA229F2ECE00862228 /* ImageController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,6 +13,7 @@ class NetworkController {
     
     // MARK: Properties
     static var limit: Int = 200
+    static public let baseUrl = URL(string: "https://api.imgur.com/3/gallery/search/")
     
     enum HTTPMethod: String {
         case Get = "GET"
@@ -34,10 +35,13 @@ class NetworkController {
         var request = URLRequest(url: requestURL)
         request.httpMethod = httpMethod.rawValue
         request.httpBody = body
+        request.setValue("Client-ID 126701cd8332f32", forHTTPHeaderField: "Authorization")
         
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        DispatchQueue.main.async {
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        }
         
-        if String(describing: requestURL).range(of: "steampowered.com") != nil {
+        if String(describing: requestURL).range(of: "imgur.com") != nil {
             NetworkController.decrementLimit()
         }
         
@@ -45,7 +49,10 @@ class NetworkController {
         print(request)
         let dataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
             //            print(response)
-            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            
+            DispatchQueue.main.async {
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            }
             completion?(data, error)
         }
         
