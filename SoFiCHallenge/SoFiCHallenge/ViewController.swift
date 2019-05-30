@@ -30,12 +30,20 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         }
     }
     
-    // MARK: - Lifecycle Methods
+    // MARK: - Lifecycle and override Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         self.fetchSearchResults(for: "cats") { (imageArray) in
             self.images = imageArray
         }
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        guard let flowLayout = imageResultsCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
+            return
+        }
+        flowLayout.invalidateLayout()
     }
     
     // MARK: - Logic Methods
@@ -100,6 +108,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard let cell = cell as? ImageCollectionViewCell else { return }
+        cell.imageView.image = nil
         cell.prepareForReuse()
     }
     
