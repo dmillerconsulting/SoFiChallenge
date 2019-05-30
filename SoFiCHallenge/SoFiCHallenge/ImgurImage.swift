@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 class ImgurImage {
+    // ALL IMAGES COMING BACK WITH EMPTY TITLES FOR SOME REASON
     let id: String
     var title: String = "No Title"
     let link: String
