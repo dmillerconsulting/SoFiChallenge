@@ -66,6 +66,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9648A61B22A09BB70047662C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				965039A3229F040700862228 /* ImgurImage.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		9648A61C22A09BCA0047662C /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				965039AD229F422000862228 /* ImageDetailViewController.swift */,
+				96503981229EFFBE00862228 /* ViewController.swift */,
+				965039AB229F305E00862228 /* ImageCollectionViewCell.swift */,
+				96503983229EFFBE00862228 /* Main.storyboard */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		9648A61D22A09BEC0047662C /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				965039A9229F2ECE00862228 /* ImageController.swift */,
+				9650399F229F003500862228 /* NetworkController.swift */,
+				9650397F229EFFBE00862228 /* AppDelegate.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		96503973229EFFBE00862228 = {
 			isa = PBXGroup;
 			children = (
@@ -87,14 +116,9 @@
 		9650397E229EFFBE00862228 /* SoFiCHallenge */ = {
 			isa = PBXGroup;
 			children = (
-				9650397F229EFFBE00862228 /* AppDelegate.swift */,
-				96503981229EFFBE00862228 /* ViewController.swift */,
-				965039A3229F040700862228 /* ImgurImage.swift */,
-				965039A9229F2ECE00862228 /* ImageController.swift */,
-				965039AB229F305E00862228 /* ImageCollectionViewCell.swift */,
-				9650399F229F003500862228 /* NetworkController.swift */,
-				965039AD229F422000862228 /* ImageDetailViewController.swift */,
-				96503983229EFFBE00862228 /* Main.storyboard */,
+				9648A61C22A09BCA0047662C /* ViewControllers */,
+				9648A61B22A09BB70047662C /* Models */,
+				9648A61D22A09BEC0047662C /* Controllers */,
 				96503986229EFFBF00862228 /* Assets.xcassets */,
 				96503988229EFFBF00862228 /* LaunchScreen.storyboard */,
 				9650398B229EFFBF00862228 /* Info.plist */,

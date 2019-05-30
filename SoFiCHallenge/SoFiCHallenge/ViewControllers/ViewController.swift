@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UITextFieldDelegate {
+class ViewController: UIViewController {
     
     // MARK - IBOutlets
     @IBOutlet weak var searchTextField: UITextField!
@@ -53,7 +53,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         let parameters: [String:String] = ["q":searchTerm, "page": "\(self.page)"]
         NetworkController.performRequest(for: baseUrl, httpMethod: .Get, urlParameters: parameters, body: nil) { (data, error) in
             if error != nil {
-                //FIXME: Handle error response
+                print(error?.localizedDescription as Any)
             }
             
             guard let data = data, let imgurImageArray = self.parseResponseData(data) else { return }
@@ -89,38 +89,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     func clearCells() {
         self.images = [ImgurImage]()
     }
-    
-    //MARK: - Delegate Methods
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return images.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as? ImageCollectionViewCell else { return UICollectionViewCell() }
-        cell.imgurImage = images[indexPath.row]
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if indexPath.row >= self.images.count - 10 {
-            self.paginate()
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        guard let cell = cell as? ImageCollectionViewCell else { return }
-        cell.imageView.image = nil
-        cell.prepareForReuse()
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.clearCells()
-        self.resignFirstResponder()
-        self.fetchSearchResults(for: self.searchTextField.text ?? "") { (images) in
-            self.images = images
-        }
-        return true
-    }
 
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -135,3 +103,50 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
 }
 
+extension ViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        // screen width - half of all horizontal padding, divided in half
+        let width = (self.imageResultsCollectionView.frame.width - 24) / 2
+        // I'm so sorry about the magic numbers, but autolayout was not cooperating and I am out of time.
+        let height = (((width / 4) * 3) + 40)
+        return CGSize(width: width, height: height)
+    }
+}
+
+extension ViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.clearCells()
+        self.resignFirstResponder()
+        self.fetchSearchResults(for: self.searchTextField.text ?? "") { (images) in
+            self.images = images
+        }
+        return true
+    }
+}
+
+extension ViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return images.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as? ImageCollectionViewCell else { return UICollectionViewCell() }
+        cell.imgurImage = images[indexPath.row]
+        return cell
+    }
+}
+
+extension ViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if indexPath.row >= self.images.count - 10 {
+            self.paginate()
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard let cell = cell as? ImageCollectionViewCell else { return }
+        cell.imageView.image = nil
+        cell.prepareForReuse()
+    }
+}
